@@ -1,0 +1,69 @@
+@baseUrl = http://localhost:3000/api
+
+
+
+# @name create_user
+POST {{baseUrl}}/user HTTP/1.1
+content-type: application/json
+
+{
+	"name":"Gabi",
+	"email":"gabi@gmail.com",
+	"cellphone":"78945678",
+    "courses": ["Sitemas Digitais"],
+    "available_hours": {},
+    "available_locations":[],
+	"teacher": false
+}
+
+###
+
+# @name bucando_usuario_by_email
+
+GET {{baseUrl}}/user HTTP/1.1
+content-type: application/json
+
+{
+	"email":"joaopedrodiasamaral@gmail.com"
+}
+
+###
+
+# @name show_teacher_profile
+
+GET {{baseUrl}}/teacher HTTP/1.1
+content-type: application/json
+
+{
+	"id":"60199263f24fc72ddc7856e4" 
+	//luiza
+}
+
+###
+
+# @name find_by_course
+
+GET {{baseUrl}}/search HTTP/1.1
+content-type: application/json
+
+{
+	"courses":"Algoritmos e Estrutura de dados" 
+	//Gabi
+}
+
+###
+
+# @name create_appointment
+
+POST {{baseUrl}}/appointment HTTP/1.1
+content-type: application/json
+
+{
+	"date": "2021-02-02T19:10:46.753Z",
+	"teacher_name": "Luiza",
+	"teacher_id": "6019ace515fc2837d06a89e6",
+	"student_name":"Gabi",
+	"student_id": "6019ade215fc2837d06a89e7",
+	"course": "Sistemas Digitais",
+	"location": "Cafeteria dos anjos"
+}
