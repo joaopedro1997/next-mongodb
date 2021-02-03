@@ -50,7 +50,7 @@ export default async (
 
     const { db } = await connect();
 
-    const response = await db.collection('users').insertOne({
+    const response = await db.insertOne({
       name,
       email,
       cellphone,
@@ -63,25 +63,6 @@ export default async (
       appointments: [],
     });
     res.status(200).json(response.ops[0]);
-  } else if (req.method === 'GET') {
-    const { email, _id } = req.body;
-
-    if (!email && !_id) {
-      res.status(400).json({ error: 'Missing e-mail or id on request body' });
-      return;
-    }
-
-    const { db } = await connect();
-
-    const response = await db.collection('users').findOne({ email });
-
-    if (!response) {
-      res.status(400).json({ error: 'Email not found' });
-      return;
-    }
-
-    res.status(200).json(response);
-    return;
   } else {
     res.status(400).json({ error: 'Wrong request method' });
     return;

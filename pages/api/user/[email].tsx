@@ -1,19 +1,13 @@
+import { countReset } from 'console';
 import { NextApiRequest, NextApiResponse } from 'next';
-import connect from '../../utils/database';
-import { ObjectID } from 'mongodb';
+import connect from '../../../utils/database';
 
 interface SuccessResponseType {
   _id: String;
   name: String;
   email: String;
   cellphone: String;
-  teacher: true;
-  coins: 1;
-  courses: String[];
-  available_hours: Object;
-  available_locations: String[];
-  reviews: Object[];
-  appointments: Object[];
+  teacher: Boolean;
 }
 interface ErrorResponseType {
   error: String;
@@ -24,22 +18,24 @@ export default async (
   res: NextApiResponse<ErrorResponseType | SuccessResponseType>
 ): Promise<void> => {
   if (req.method === 'GET') {
-    const { id } = req.body;
+    const { email } = req.query;
 
-    if (!id) {
-      res.status(400).json({ error: 'Missing teacher ID on request body' });
+    if (!email) {
+      res.status(400).json({ error: 'Missing e-mail or id on request body' });
       return;
     }
 
     const { db } = await connect();
 
-    const response = await db.findOne({ _id: new ObjectID(id) });
+    const response = await db.findOne({ email });
+
     if (!response) {
-      res.status(400).json({ error: 'teacher not found' });
+      res.status(400).json({ error: `User with e-mail ${email} not found` });
       return;
     }
 
     res.status(200).json(response);
+    return;
   } else {
     res.status(400).json({ error: 'Wrong request method' });
     return;

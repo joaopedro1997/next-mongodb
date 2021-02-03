@@ -1,5 +1,6 @@
 @baseUrl = http://localhost:3000/api
 
+//	Arquivo restClient contendo todas requisições a api
 
 
 # @name create_user
@@ -20,24 +21,16 @@ content-type: application/json
 
 # @name bucando_usuario_by_email
 
-GET {{baseUrl}}/user HTTP/1.1
+GET {{baseUrl}}/user/gabi@gmail.com1 HTTP/1.1
 content-type: application/json
 
-{
-	"email":"joaopedrodiasamaral@gmail.com"
-}
 
 ###
 
 # @name show_teacher_profile
 
-GET {{baseUrl}}/teacher HTTP/1.1
+GET {{baseUrl}}/teacher/6019ace515fc2837d06a89e6 HTTP/1.1
 content-type: application/json
-
-{
-	"id":"60199263f24fc72ddc7856e4" 
-	//luiza
-}
 
 ###
 
@@ -53,7 +46,7 @@ content-type: application/json
 
 ###
 
-# @name create_appointment
+#  @name create_appointment
 
 POST {{baseUrl}}/appointment HTTP/1.1
 content-type: application/json

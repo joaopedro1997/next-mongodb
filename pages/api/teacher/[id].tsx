@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import connect from '../../utils/database';
+import connect from '../../../utils/database';
 import { ObjectID } from 'mongodb';
 
 interface SuccessResponseType {
@@ -24,18 +24,26 @@ export default async (
   res: NextApiResponse<ErrorResponseType | SuccessResponseType>
 ): Promise<void> => {
   if (req.method === 'GET') {
-    const { id } = req.body;
+    const id = req.query.id as string;
 
     if (!id) {
       res.status(400).json({ error: 'Missing teacher ID on request body' });
       return;
     }
 
+    let _id: ObjectID;
+    try {
+      _id = new ObjectID(id);
+    } catch {
+      res.status(400).json({ error: 'Wrong objectId' });
+      return;
+    }
+
     const { db } = await connect();
 
-    const response = await db.findOne({ _id: new ObjectID(id) });
+    const response = await db.findOne({ _id });
     if (!response) {
-      res.status(400).json({ error: 'teacher not found' });
+      res.status(400).json({ error: `Teacher with ID ${id} not found` });
       return;
     }
 
