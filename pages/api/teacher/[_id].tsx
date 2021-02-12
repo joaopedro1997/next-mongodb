@@ -24,8 +24,7 @@ export default async (
   res: NextApiResponse<ErrorResponseType | SuccessResponseType>
 ): Promise<void> => {
   if (req.method === 'GET') {
-    const id = req.query.id as string;
-
+    const id = req.query._id as string;
     if (!id) {
       res.status(400).json({ error: 'Missing teacher ID on request body' });
       return;

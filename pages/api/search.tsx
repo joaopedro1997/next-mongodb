@@ -19,7 +19,7 @@ export default async (
 
     const { db } = await connect();
 
-    const response = await db.collection('users').find({ courses }).toArray();
+    const response = await db.find({ courses }).toArray();
     if (response.length == 0) {
       res.status(400).json({ error: 'course not found' });
       return;

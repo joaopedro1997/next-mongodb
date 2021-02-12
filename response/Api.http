@@ -8,12 +8,19 @@ POST {{baseUrl}}/user HTTP/1.1
 content-type: application/json
 
 {
-	"name":"Gabi",
-	"email":"gabi@gmail.com",
+	"name":"João Pedro",
+	"email":"joaopedrodiasamaral@gmail.com",
 	"cellphone":"78945678",
-    "courses": ["Sitemas Digitais"],
-    "available_hours": {},
-    "available_locations":[],
+    "courses": ["Projeto transversal 2", "Princom", "Sistemas Digitais"],
+    "available_hours": {
+			"monday":[
+				7, 14, 18
+			],
+			"friday":[
+				12, 16, 20
+			]
+		},
+    "available_locations":["online"],
 	"teacher": false
 }
 

@@ -1,18 +1,19 @@
 import { NextPage } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/client';
 
-import Nav from '../components/nav';
+import Nav from '../../components/nav';
 
-const Home: NextPage = () => {
+const SearchePage: NextPage = () => {
   const [session, loading] = useSession();
 
   return (
     <div>
       <Nav />
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <h1>Bem vindo a página Profile </h1>
         {!session && (
           <div className="text-3xl">
-            Not signed in <br />
+            Não logado <br />
             <button onClick={(): Promise<void> => signIn('auth0')}>
               Sign in
             </button>
@@ -20,16 +21,8 @@ const Home: NextPage = () => {
         )}
         {session && (
           <div className="text-3xl">
-            Signed in as {session.user.email} <br />
-            <button
-              onClick={(): Promise<void> =>
-                signOut({
-                  callbackUrl: `http://api/auth/logout`,
-                })
-              }
-            >
-              Sign out
-            </button>
+            Logado como {session.user.email} <br />
+            <button onClick={(): Promise<void> => signOut()}>Sair</button>
           </div>
         )}
         {loading && (
@@ -42,4 +35,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default SearchePage;
