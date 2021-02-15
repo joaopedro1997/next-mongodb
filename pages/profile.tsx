@@ -26,7 +26,7 @@ const AppPage: NextPage = () => {
           </div>
         )}
         {session && data && (
-          <p>
+          <>
             <div className="text-3xl">
               <h1>Bem vindo a página Profile </h1>
               Logado como {session.user.email} <br />
@@ -39,7 +39,7 @@ const AppPage: NextPage = () => {
             </div>
             <p>{data.data.name}</p>
             <p>{data.data.coins} moedas</p>
-          </p>
+          </>
         )}
         {error && <h1>O usuário não existe</h1>}
 

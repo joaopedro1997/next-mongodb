@@ -40,12 +40,11 @@ export default async (
 
     const { db } = await connect();
 
-    const response = await db.findOne({ _id });
+    let response = await db.findOne({ _id });
     if (!response) {
       res.status(400).json({ error: `Teacher with ID ${id} not found` });
       return;
     }
-
     res.status(200).json(response);
   } else {
     res.status(400).json({ error: 'Wrong request method' });

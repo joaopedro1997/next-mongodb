@@ -8,10 +8,10 @@ POST {{baseUrl}}/user HTTP/1.1
 content-type: application/json
 
 {
-	"name":"João Pedro",
+	"name":"Rafael Neiva",
 	"email":"joaopedrodiasamaral@gmail.com",
 	"cellphone":"78945678",
-    "courses": ["Projeto transversal 2", "Princom", "Sistemas Digitais"],
+    "courses": ["Projeto transversal 2", "BDI", "BDII"],
     "available_hours": {
 			"monday":[
 				7, 14, 18
@@ -21,7 +21,7 @@ content-type: application/json
 			]
 		},
     "available_locations":["online"],
-	"teacher": false
+	"teacher": true
 }
 
 ###
@@ -47,7 +47,7 @@ GET {{baseUrl}}/search HTTP/1.1
 content-type: application/json
 
 {
-	"courses":"Algoritmos e Estrutura de dados" 
+	"courses":"BDII" 
 	//Gabi
 }
 
